@@ -7,7 +7,16 @@ def get_filename():
         return filename
     else:
         print("[ WARNING ] You should run this program by calling: python parser.py filename.")
-        return -1
+        return ""
+
+
+def read_file_to_list(filename):
+    output = []
+    with open(filename, "r") as file_to_read:
+        for line in file_to_read.readlines():
+            row = line.replace("\n", ""). split(" ")
+            output.append(row)
+    return output
 
 
 def main():
@@ -15,8 +24,9 @@ def main():
     if len(filename) == 0:
         return
 
-    print(f"File to parse: {filename}")
-
+    print(f"File opened: {filename}")
+    data_list = read_file_to_list(filename)
+    print(data_list)
 
 if __name__ == "__main__":
     main()
